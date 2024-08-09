@@ -87,6 +87,9 @@ void InitST7735R()
     usleep(10*1000);
 
 #ifdef ST7789
+    // Set Framerate in normal Mode to 90 Hz
+    SPI_TRANSFER(0xc6, 0x5h);
+    
     // The ST7789 controller is actually a unit with 320x240 graphics memory area, but only 240x240 portion
     // of it is displayed. Therefore if we wanted to swap row address mode above, writes to Y=0...239 range will actually land in
     // memory in row addresses Y = 319-(0...239) = 319...80 range. To view this range, we must scroll the view by +80 units in Y
